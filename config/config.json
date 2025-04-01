@@ -1,0 +1,35 @@
+{
+    "api_keys": {
+        "huggingface": "YOUR_HUGGINGFACE_API_KEY",
+        "anthropic": "YOUR_ANTHROPIC_API_KEY",
+        "instagram": {
+            "access_token": "YOUR_INSTAGRAM_ACCESS_TOKEN",
+            "user_id": "YOUR_INSTAGRAM_USER_ID"
+        }
+    },
+    "image_generator": {
+        "model_name": "stabilityai/stable-diffusion-xl-base-1.0",
+        "style": "digital art, high quality, detailed",
+        "default_prompt": "Serene mountain landscape with vibrant sunset colors"
+    },
+    "description_generator": {
+        "model": "claude-3-opus-20240229",
+        "prompt_template": "Create an engaging Instagram caption for an image. The image was generated with the prompt: '{image_prompt}'. The image shows {image_description}. Start with '{opener}' and end with '{closer}'. Make the caption compelling and around 100-150 words. Include emotional elements and make it relatable for an Instagram audience."
+    },
+    "instagram_poster": {
+        "default_hashtags": [
+            "ai", 
+            "digitalart", 
+            "aiart", 
+            "creativecoding", 
+            "generativeart", 
+            "artificialintelligence", 
+            "techie", 
+            "instatech", 
+            "creativecontent"
+        ],
+        "post_frequency_hours": 24,
+        "scheduled_posts_count": 7
+    },
+    "output_directory": "output"
+}
