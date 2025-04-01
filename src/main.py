@@ -15,6 +15,10 @@ import argparse
 from datetime import datetime
 from typing import Dict, Any
 import sys
+from dotenv import load_dotenv
+
+# Cargar variables de entorno
+load_dotenv()
 
 # Add parent directory to path to import modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -40,6 +44,20 @@ def load_config(config_path: str = "config/config.json") -> Dict[str, Any]:
     try:
         with open(config_path, 'r') as f:
             config = json.load(f)
+        
+        # Reemplazar valores con variables de entorno si están disponibles
+        if os.getenv("HUGGINGFACE_API_KEY"):
+            config["api_keys"]["huggingface"] = os.getenv("HUGGINGFACE_API_KEY")
+        
+        if os.getenv("ANTHROPIC_API_KEY"):
+            config["api_keys"]["anthropic"] = os.getenv("ANTHROPIC_API_KEY")
+            
+        if os.getenv("INSTAGRAM_ACCESS_TOKEN"):
+            config["api_keys"]["instagram"]["access_token"] = os.getenv("INSTAGRAM_ACCESS_TOKEN")
+            
+        if os.getenv("INSTAGRAM_USER_ID"):
+            config["api_keys"]["instagram"]["user_id"] = os.getenv("INSTAGRAM_USER_ID")
+            
         logger.info(f"Configuration loaded from {config_path}")
         return config
     except Exception as e:
